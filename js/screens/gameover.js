@@ -1,4 +1,4 @@
-game.GameOverScreen = me.ScreenObject.extend({
+game.GameOverScreen = me.ScreenObject.extend({ 
     init: function() {
         this.savedData = null;
         this.handler = null;
@@ -58,6 +58,7 @@ game.GameOverScreen = me.ScreenObject.extend({
                 {image: 'new'}
             );
             me.game.world.addChild(newRect, 12);
+
         }
 
         this.dialog = new (me.Renderable.extend({
@@ -108,3 +109,4 @@ game.GameOverScreen = me.ScreenObject.extend({
         me.audio.stop("theme");
     }
 });
+
