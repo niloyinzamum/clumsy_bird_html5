@@ -10,6 +10,7 @@ game.GameOverScreen = me.ScreenObject.extend({
             score: game.data.score,
             steps: game.data.steps
         };
+        
         me.save.add(this.savedData);
 
         if (!me.save.topSteps) me.save.add({topSteps: game.data.steps});
@@ -109,4 +110,6 @@ game.GameOverScreen = me.ScreenObject.extend({
         me.audio.stop("theme");
     }
 });
+
+console.log("value")
 

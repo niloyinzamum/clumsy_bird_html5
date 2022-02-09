@@ -3,7 +3,7 @@
  * http://www.melonjs.org
  * @license {@link http://www.opensource.org/licenses/mit-license.php|MIT}
  * @copyright (C) 2011 - 2016, Olivier Biot, Jason Oster, Aaron McLeod
- */
+  */
  if (
     ((function () {
         function a() {
@@ -5863,6 +5863,7 @@ if (
                                         },
                                         set: function (c) {
                                             (b[a] = c), me.device.localStorage === !0 && localStorage.setItem("me.save." + a, JSON.stringify(c));
+                                            
                                         },
                                     });
                                 })(e),

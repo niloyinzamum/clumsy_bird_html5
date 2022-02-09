@@ -330,32 +330,9 @@ var BackgroundLayer = me.ImageLayer.extend({
                     this._super(me.Renderable, "init", [0, 0, me.game.viewport.width / 2, me.game.viewport.height / 2]),
                         (this.font = new me.Font("gamefont", 40, "black", "left")),
                         (console.log(this.steps = "Steps: " + game.data.steps.toString())),
-                        (console.log(this.topSteps = "Higher Step: " + me.save.topSteps.toString()));
-                        let bodyStruct = {
-                            "game_id":"the_game_id",
-                            "game_start_time":"the_start_time",
-                            "game_start_time":"the_start_time",
-                            "prize_event_id":"the_event_id",
-                            "score":"the_score"
-                          }
-                      
-                          const resultFromServ = axios.post(
-                              `localhost:7500/userscoreboard/`,
-                              bodyStruct,
-                              {
-                              headers: {
-                                    //   Authorization: 'Bearer ' + result.data["access"],
-                                    //   "X-Api-Key": "362oGZKh.sqBlpzQAmp0FzgsBUtjNZVNNNgdCGmlp"
-                                    },
-                                httpsAgent: new https.Agent({
-                                  rejectUnauthorized: false,
-                                }),
-                                "module_name":"bot_struct",
-                              "op_name":"get_struct",
-                              "name":"stuff",
-                                
-                              }
-                            )
+                        (console.log(this.topSteps = "Higher Step: " + me.save.topSteps.toString()))
+   
+                    
                             // console.log(resultFromServ)
                 },
                 draw: function (a) {
@@ -366,7 +343,26 @@ var BackgroundLayer = me.ImageLayer.extend({
                 },
             }))()),
                 me.game.world.addChild(this.dialog, 12);
-                
+                const Http = new XMLHttpRequest();
+                const url='http://localhost:7500/userscoreboard/score/4587458dfgasdf';
+                Http.open("POST", url);
+                Http.setRequestHeader('Content-type', 'application/json')
+                Http.send(
+                    JSON.stringify({
+                    game_id:"the_game_id",
+                    user_id: "the_user_id",
+                    game_start_time:"the_start_time",
+                    game_end_time:"the_end_time",
+                    prize_event_id:"the_event_id",
+                    game_score:this.dialog.steps.replace("Steps: ", "")
+                    })
+
+                );
+
+                Http.onreadystatechange = (e) => {
+                console.log(Http.responseText)
+                }
+
         },
         onDestroyEvent: function () {
             me.event.unsubscribe(this.handler),
